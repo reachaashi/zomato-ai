@@ -17,6 +17,7 @@ workspace_root = str(Path(__file__).resolve().parent.parent.parent)
 if workspace_root not in sys.path:
     sys.path.insert(0, workspace_root)
 
+IMPORT_ERROR = None
 # Try imports for local fallback
 try:
     from src.config import get_settings
@@ -28,6 +29,7 @@ try:
     LOCAL_BACKEND_AVAILABLE = True
 except Exception as e:
     logger.exception("Failed to import local backend components: %s", e)
+    IMPORT_ERROR = e
     LOCAL_BACKEND_AVAILABLE = False
 
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
@@ -284,6 +286,8 @@ if not api_active and not LOCAL_BACKEND_AVAILABLE:
     st.error(
         "Fatal Error: Both the FastAPI server is unreachable and the local packages cannot be imported. Please verify that the virtual environment is fully initialized."
     )
+    if IMPORT_ERROR:
+        st.exception(IMPORT_ERROR)
     st.stop()
 
 # ----------------- Load Autocomplete Lists -----------------
