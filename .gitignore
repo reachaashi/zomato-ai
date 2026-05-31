@@ -2,7 +2,7 @@
 .env
 
 # Local data cache
-data/
+/data/
 
 # Python
 __pycache__/
