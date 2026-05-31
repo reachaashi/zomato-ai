@@ -17,6 +17,11 @@ workspace_root = str(Path(__file__).resolve().parent.parent.parent)
 if workspace_root not in sys.path:
     sys.path.insert(0, workspace_root)
 
+# Remove any pre-imported 'src' packages from sys.modules to prevent namespace collision with Streamlit's /mount/src path
+for key in list(sys.modules.keys()):
+    if key == "src" or key.startswith("src."):
+        sys.modules.pop(key, None)
+
 IMPORT_ERROR = None
 # Try imports for local fallback
 try:
