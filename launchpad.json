@@ -1,0 +1,6 @@
+{
+  "processes": [
+    { "name": "web", "command": "npm run dev" },
+    { "name": "api", "command": "npm run start:api", "cwd": "./apps/api" }
+  ]
+}

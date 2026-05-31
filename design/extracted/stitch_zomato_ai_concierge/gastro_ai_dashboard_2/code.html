@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GASTRO-AI | Premium Recommender</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#f9dcdc",
+                        "secondary-fixed": "#d4e3ff",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface-dim": "#1e0f10",
+                        "on-primary-container": "#5b0017",
+                        "surface": "#1e0f10",
+                        "surface-container-highest": "#423031",
+                        "background": "#1e0f10",
+                        "on-secondary-container": "#d6e5ff",
+                        "on-secondary-fixed-variant": "#004883",
+                        "surface-variant": "#423031",
+                        "primary-fixed": "#ffdadb",
+                        "on-primary-fixed": "#40000d",
+                        "on-primary": "#67001b",
+                        "inverse-primary": "#bc0b3b",
+                        "surface-container": "#2b1b1c",
+                        "tertiary-container": "#cea700",
+                        "on-tertiary-container": "#4e3e00",
+                        "tertiary-fixed-dim": "#eec200",
+                        "secondary-fixed-dim": "#a4c9ff",
+                        "on-tertiary": "#3c2f00",
+                        "secondary-container": "#0267b8",
+                        "on-surface-variant": "#e3bdbf",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#92002a",
+                        "primary": "#ffb2b7",
+                        "surface-bright": "#473435",
+                        "surface-container-high": "#372626",
+                        "on-secondary-fixed": "#001c39",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#180a0b",
+                        "outline-variant": "#5b4041",
+                        "inverse-on-surface": "#3e2c2d",
+                        "tertiary": "#eec200",
+                        "surface-container-low": "#271718",
+                        "on-surface": "#f9dcdc",
+                        "secondary": "#a4c9ff",
+                        "inverse-surface": "#f9dcdc",
+                        "surface-tint": "#ffb2b7",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "tertiary-fixed": "#ffe083",
+                        "on-secondary": "#00315d",
+                        "primary-container": "#ff516a",
+                        "outline": "#aa888a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "48px",
+                        "container-padding": "24px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Outfit"],
+                        "body-md": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "headline-sm": ["Outfit"],
+                        "display-lg": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "label-md": ["Outfit"],
+                        "label-sm": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0F172A;
+            color: #f9dcdc;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-rose {
+            box-shadow: 0 0 20px rgba(255, 81, 106, 0.15);
+        }
+        .radial-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 81, 106, 0.05) 0%, transparent 70%);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #2b1b1c;
+            height: 6px;
+            border-radius: 3px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #ffb2b7;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(255, 178, 183, 0.5);
+        }
+        
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .animate-pulse-heart {
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-pulse-heart, .animate-pulse, .pulsing-btn, .skeleton-shimmer {
+                animation: none !important;
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .skeleton-shimmer {
+            background: linear-gradient(90deg, rgba(66, 48, 49, 0.5) 25%, rgba(91, 64, 65, 0.8) 50%, rgba(66, 48, 49, 0.5) 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite linear;
+        }
+
+        @keyframes breathing {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0px rgba(238, 194, 0, 0); }
+            50% { opacity: 0.6; box-shadow: 0 0 10px rgba(238, 194, 0, 0.6); }
+        }
+        .status-breathing {
+            animation: breathing 3s ease-in-out infinite;
+        }
+
+        .pulsing-btn {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 81, 106, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 81, 106, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 81, 106, 0); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary/30">
+<!-- Global Radial Decoration -->
+<div class="fixed inset-0 pointer-events-none radial-bg -z-10"></div>
+<!-- Layout Container -->
+<div class="flex min-h-screen">
+<!-- SideNavBar Shared Component Mapping -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col py-6 bg-surface/80 backdrop-blur-2xl border-r border-outline-variant/10 shadow-md w-80">
+<!-- Header Section -->
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<span class="font-display-lg text-primary font-bold tracking-tighter">GASTRO-AI</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary/10 border border-tertiary/20">
+<span class="w-2 h-2 rounded-full bg-tertiary status-breathing"></span>
+<span class="text-[10px] uppercase font-bold text-tertiary tracking-widest">Connected</span>
+</div>
+</div>
+<p class="font-label-md text-on-surface-variant opacity-70">Premium Recommender System</p>
+</div>
+<!-- Controls (Dashboard Specific) -->
+<div class="flex-1 overflow-y-auto px-6 space-y-6 pb-24">
+<!-- Location -->
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">location_on</span> LOCATION
+                    </label>
+<div class="relative">
+<input class="w-full bg-surface-container-high/60 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary/40 text-on-surface placeholder-on-surface-variant/40 transition-all" placeholder="Select city..." type="text"/>
+</div>
+</div>
+<!-- Budget Segmented -->
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">payments</span> BUDGET
+                    </label>
+<div class="flex p-1 bg-surface-container-lowest/60 rounded-xl gap-1">
+<button class="flex-1 py-2 rounded-lg bg-primary-container text-on-primary-container font-label-md transition-all">Low</button>
+<button class="flex-1 py-2 rounded-lg hover:bg-surface-variant/50 text-on-surface-variant font-label-md transition-all">Med</button>
+<button class="flex-1 py-2 rounded-lg hover:bg-surface-variant/50 text-on-surface-variant font-label-md transition-all">High</button>
+</div>
+</div>
+<!-- Cuisine Filter -->
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">restaurant_menu</span> CUISINE
+                    </label>
+<div class="relative">
+<input class="w-full bg-surface-container-high/60 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary/40 text-on-surface placeholder-on-surface-variant/40 transition-all" placeholder="Italian, Japanese, fusion..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant/60">search</span>
+</div>
+</div>
+<!-- Rating Slider -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">star</span> MIN RATING
+                        </label>
+<span class="font-label-md text-primary" id="rating-val">4.2</span>
+</div>
+<input class="w-full cursor-pointer" max="5" min="0" oninput="document.getElementById('rating-val').innerText = this.value" step="0.1" type="range" value="4.2"/>
+</div>
+<!-- Recommendations Slider -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">format_list_numbered</span> MAX RESULTS
+                        </label>
+<span class="font-label-md text-primary" id="results-val">8</span>
+</div>
+<input class="w-full cursor-pointer" max="15" min="1" oninput="document.getElementById('results-val').innerText = this.value" step="1" type="range" value="8"/>
+</div>
+<!-- Special Requests -->
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span> VIBES / REQUESTS
+                    </label>
+<textarea class="w-full bg-surface-container-high/60 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary/40 text-on-surface placeholder-on-surface-variant/40 transition-all resize-none" placeholder="Rooftop, quiet music, anniversary..." rows="3"></textarea>
+</div>
+</div>
+<!-- Submit Action -->
+<div class="px-6 py-4 absolute bottom-0 left-0 w-full bg-surface/80 backdrop-blur-md">
+<button class="pulsing-btn w-full py-4 bg-gradient-to-r from-primary-container to-inverse-primary text-white font-headline-sm rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+                    Find Best Flavors
+                </button>
+</div>
+</aside>
+<!-- Main Panel Content -->
+<main class="ml-80 flex-1 relative flex flex-col min-h-screen">
+<!-- TopAppBar Shared Component Mapping -->
+<header class="flex justify-between items-center px-container-padding py-4 w-full z-50 bg-background/40 backdrop-blur-md">
+<div class="flex items-center gap-8">
+<!-- Top Navigation Tabs (Desktop only) -->
+<nav class="hidden md:flex gap-8">
+<a class="font-label-md text-primary border-b-2 border-primary pb-1" href="#">Home</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Explore</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">History</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Favorites</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-sm w-48 placeholder-on-surface-variant/50" placeholder="Quick search..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional and sleek studio portrait of a modern executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi4ZXYKk5BUzSBt8k7uoAL5sJOKZS1A8XdGDalP07aLka8--v07F_Rdwy5CVHHRdLSH7B4y8XuwdqrKc9_AnJYYn-z1MzzBZn39NFGKO9kvKlTAy6hnJwgIf72-UUjGFBexjfavBan0DIyJkCepyCBre1NgRyyp-kJRoLWVfQufqgkBStIQvqVJVwi9C1ZVXO4QP-jaWJvVuSv59uU1nnixpWakzxHIx8jeBCTP14OVkNuGB0aL8rYlmNN7OX_FpreM8h8wLc3BCk"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Initial State Content Canvas -->
+<section class="flex-1 flex flex-col items-center justify-center p-12 overflow-hidden">
+<!-- Background Decoration Shapes -->
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[150px] -z-10"></div>
+<div class="max-w-4xl w-full">
+<!-- Glassmorphism Main Card -->
+<div class="glass-panel rounded-[40px] p-12 text-center relative overflow-hidden group transition-all duration-700 hover:scale-[1.01] hover:shadow-[0_20px_50px_rgba(255,81,106,0.1)]">
+<div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<!-- Floating Icons Animation -->
+<div class="absolute top-10 left-10 opacity-20 group-hover:opacity-40 transition-opacity duration-500 animate-bounce" style="animation-duration: 4s;">
+<span class="material-symbols-outlined text-6xl text-primary">local_pizza</span>
+</div>
+<div class="absolute bottom-20 left-20 opacity-20 group-hover:opacity-40 transition-opacity duration-500 animate-bounce" style="animation-duration: 5s;">
+<span class="material-symbols-outlined text-6xl text-secondary">japanese_curry</span>
+</div>
+<div class="absolute top-20 right-20 opacity-20 group-hover:opacity-40 transition-opacity duration-500 animate-bounce" style="animation-duration: 6s;">
+<span class="material-symbols-outlined text-6xl text-tertiary">local_pizza</span>
+</div>
+<div class="relative z-10 space-y-8">
+<div class="inline-flex p-6 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-4 scale-110 group-hover:scale-125 transition-transform duration-500">
+<span class="material-symbols-outlined text-6xl text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<h1 class="font-display-lg text-on-background leading-tight">
+                                Ready for your next <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">culinary adventure?</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto opacity-80 leading-relaxed">
+                                Our neural network analyzes millions of dining signals to find your perfect match. 
+                                Adjust the filters on the left and let our AI curate the perfect dining experience for you.
+                            </p>
+<div class="flex flex-wrap justify-center gap-4 pt-8">
+<div class="px-6 py-3 glass-panel rounded-full flex items-center gap-3 transition-transform hover:scale-105 hover:shadow-lg hover:shadow-primary/10">
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+<span class="font-label-md">Real-time Zomato Sync</span>
+</div>
+<div class="px-6 py-3 glass-panel rounded-full flex items-center gap-3 transition-transform hover:scale-105 hover:shadow-lg hover:shadow-primary/10">
+<span class="material-symbols-outlined text-secondary">psychology</span>
+<span class="font-label-md">Personalized Preference Map</span>
+</div>
+<div class="px-6 py-3 glass-panel rounded-full flex items-center gap-3 transition-transform hover:scale-105 hover:shadow-lg hover:shadow-primary/10">
+<span class="material-symbols-outlined text-primary animate-pulse-heart">favorite</span>
+<span class="font-label-md">98.4% Match Accuracy</span>
+</div>
+</div>
+</div>
+<!-- Card Shine Effect -->
+<div class="absolute -inset-x-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[35deg] group-hover:left-[150%] transition-all duration-1000"></div>
+</div>
+<!-- Results Loading Skeletons -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 w-full">
+<div class="skeleton-shimmer h-48 rounded-3xl opacity-40"></div>
+<div class="skeleton-shimmer h-48 rounded-3xl opacity-40"></div>
+<div class="skeleton-shimmer h-48 rounded-3xl opacity-40"></div>
+</div>
+<!-- Status Bar -->
+<div class="mt-12 flex justify-between items-center px-8 opacity-40 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-sm uppercase tracking-widest">Global Insights: 1.2M Reviews</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm uppercase tracking-widest">Lat: 40.7128° N, Lon: 74.0060° W</span>
+<span class="material-symbols-outlined text-sm">language</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Micro-Interactions Script -->
+<script>
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.style.transform = 'scale(0.95)';
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.style.transform = '';
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.style.transform = '';
+            });
+        });
+
+        // Simple Segmented Control Logic
+        const segmentButtons = document.querySelectorAll('.flex button');
+        segmentButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parent = btn.parentElement;
+                if (parent.classList.contains('bg-surface-container-lowest')) {
+                    parent.querySelectorAll('button').forEach(b => {
+                        b.classList.remove('bg-primary-container', 'text-on-primary-container');
+                        b.classList.add('hover:bg-surface-variant/50', 'text-on-surface-variant');
+                    });
+                    btn.classList.remove('hover:bg-surface-variant/50', 'text-on-surface-variant');
+                    btn.classList.add('bg-primary-container', 'text-on-primary-container');
+                }
+            });
+        });
+    </script>
+</body></html>

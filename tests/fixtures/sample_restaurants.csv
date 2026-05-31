@@ -1,0 +1,7 @@
+name,location,listed_in(city),address,cuisines,rate,approx_cost(for two people),rest_type
+Alpha Bistro,Koramangala,Koramangala,"100 Main Rd, Koramangala, Bangalore",Italian,4.5/5,300,Casual Dining
+Beta Kitchen,Indiranagar,Indiranagar,"200 12th Main, Indiranagar, Bangalore",Chinese,4.0/5,600,Casual Dining
+Gamma Grill,HSR,HSR,"300 Sector 2, HSR Layout, Bangalore",North Indian,3.8/5,1200,Fine Dining
+,,HSR,"1 Road, Bangalore",Cafe,4.2/5,400,Cafe
+Delta Diner,Whitefield,Whitefield,"400 ITPL, Whitefield, Bangalore",Italian,NEW,500,Casual Dining
+Epsilon Eats,Marathahalli,Marathahalli,"500 Outer Ring, Marathahalli, Bangalore",Chinese,4.6/5,,Casual Dining
